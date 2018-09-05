@@ -1,0 +1,38 @@
+{
+  "description": "Pipeline for parsing tomcat hippo-site logs.",
+  "processors": [{
+    {
+      "grok": {
+        "field": "message",
+        "patterns": [
+                "%{TIMESTAMP:tomcat.hippo-site.timestamp}\\s+\\[%{GREEDYDATA:tomcat.hippo-site.thread}\\]\\s+%{LOGLEVEL:tomcat.hippo-site.loglevel}\\s+\\[%{GREEDYDATA:tomcat.hippo-site.location}\\]\\s+%{GREEDYDATA:tomcat.hippo-site.message}"
+        ],
+      "ignore_missing": true,
+      "pattern_definitions": {
+        "TIMESTAMP": "%{MONTHDAY}.%{MONTHNUM2}.%{YEAR} %{TIME}",
+        "GREEDYMULTILINE": "(.|\n)*"
+      }
+    }
+  },
+  {
+    "remove": {
+        "field": "message",
+        "ignore_failure": true
+    }
+  },
+  {
+    "date": {
+      "field": "tomcat.hippo-site.timestamp",
+      "target_field": "@timestamp",
+      "formats": ["dd.MM.yyyy HH:mm:ss"],
+      "ignore_failure": true
+    }
+  }],
+
+  "on_failure" : [{
+    "set" : {
+      "field" : "error.message",
+      "value" : "{{ _ingest.on_failure_message }}"
+    }
+  }]
+}
