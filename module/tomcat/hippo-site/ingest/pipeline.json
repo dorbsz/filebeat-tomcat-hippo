@@ -1,15 +1,15 @@
 {
+
   "description": "Pipeline for parsing tomcat hippo-site logs.",
   "processors": [{
-    {
-      "grok": {
-        "field": "message",
-        "patterns": [
-                "%{TIMESTAMP:tomcat.hippo-site.timestamp}\\s+\\[%{GREEDYDATA:tomcat.hippo-site.thread}\\]\\s+%{LOGLEVEL:tomcat.hippo-site.loglevel}\\s+\\[%{GREEDYDATA:tomcat.hippo-site.location}\\]\\s+%{GREEDYDATA:tomcat.hippo-site.message}"
+    "grok": {
+      "field": "message",
+      "patterns":[
+                "%{TIMESTAMP:tomcat.hippo-site.timestamp}\\s+\\[%{GREEDYDATA:tomcat.hippo-site.thread}\\]\\s+%{LOGLEVEL:tomcat.hippo-site.loglevel}\\s+\\[%{GREEDYDATA:tomcat.hippo-site.location}\\]\\s+%{GREEDYMULTILINE:tomcat.hippo-site.message}"
         ],
       "ignore_missing": true,
       "pattern_definitions": {
-        "TIMESTAMP": "%{MONTHDAY}.%{MONTHNUM2}.%{YEAR} %{TIME}",
+        "TIMESTAMP": "%{MONTHDAY}.%{MONTHNUM2}.%{YEAR} %{HOUR}:%{MINUTE}:%{SECOND}",
         "GREEDYMULTILINE": "(.|\n)*"
       }
     }
