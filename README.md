@@ -14,3 +14,5 @@ Don't forget to change your timezone @ /module/tomcat/hippo-XXX/ingest/pipeline.
     "ignore_failure": true
     }
 }
+
+Also change your /module/tomcat/hippo-XXX/manifest.yml to reflect your environment
