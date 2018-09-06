@@ -1,15 +1,15 @@
 {
-  "description": "Pipeline for parsing tomcat hippo-site logs.",
+
+  "description": "Pipeline for parsing tomcat hippo-cms logs.",
   "processors": [{
-    {
-      "grok": {
-        "field": "message",
-        "patterns": [
-                "%{TIMESTAMP:tomcat.hippo-site.timestamp}\\s+\\[%{GREEDYDATA:tomcat.hippo-site.thread}\\]\\s+%{LOGLEVEL:tomcat.hippo-site.loglevel}\\s+\\[%{GREEDYDATA:tomcat.hippo-site.location}\\]\\s+%{GREEDYDATA:tomcat.hippo-site.message}"
+    "grok": {
+      "field": "message",
+      "patterns":[
+                "%{TIMESTAMP:tomcat.hippo-cms.timestamp}\\s+\\[%{GREEDYDATA:tomcat.hippo-cms.thread}\\]\\s+%{LOGLEVEL:tomcat.hippo-cms.loglevel}\\s+\\[%{GREEDYDATA:tomcat.hippo-cms.location}\\]\\s+%{GREEDYMULTILINE:tomcat.hippo-cms.message}"
         ],
       "ignore_missing": true,
       "pattern_definitions": {
-        "TIMESTAMP": "%{MONTHDAY}.%{MONTHNUM2}.%{YEAR} %{TIME}",
+        "TIMESTAMP": "%{MONTHDAY}.%{MONTHNUM2}.%{YEAR} %{HOUR}:%{MINUTE}:%{SECOND}",
         "GREEDYMULTILINE": "(.|\n)*"
       }
     }
@@ -22,9 +22,10 @@
   },
   {
     "date": {
-      "field": "tomcat.hippo-site.timestamp",
+      "field": "tomcat.hippo-cms.timestamp",
       "target_field": "@timestamp",
       "formats": ["dd.MM.yyyy HH:mm:ss"],
+      "timezone": "America/Los_Angeles",
       "ignore_failure": true
     }
   }],

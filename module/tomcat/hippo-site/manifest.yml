@@ -9,7 +9,6 @@ var:
     os.windows:
       - "C:/JavaTools/apache-tomcat-*/logs/hippo-site*"
       - "E:/JavaTools/apache-tomcat-*/logs/hippo-site*"
-      - "C:/workspace/hippo-site*"
 
 ingest_pipeline: ingest/pipeline.json
 input: config/hippo-site.yml
