@@ -1,0 +1,14 @@
+module_version: 1.0
+
+var:
+  - name: paths
+    default:
+      - /var/log/tomcat/hippo-audit*
+    os.darwin:
+      - /usr/local/var/log/tomcat/hippo-audit*
+    os.windows:
+      - "C:/JavaTools/apache-tomcat-*/logs/hippo-audit*"
+      - "E:/JavaTools/apache-tomcat-*/logs/hippo-audit*"
+
+ingest_pipeline: ingest/pipeline.json
+input: config/hippo-audit.yml

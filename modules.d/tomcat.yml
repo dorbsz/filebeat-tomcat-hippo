@@ -1,5 +1,5 @@
 - module: tomcat
-  # Access logs
+  # hippo-site logs
   hippo-site:
     enabled: true
 
@@ -7,9 +7,17 @@
     # Filebeat will choose the paths depending on your OS.
     #var.paths:
 
-  # Error logs
+  # hippo-cms logs
   hippo-cms:
-    enabled: false
+    enabled: true
+
+    # Set custom paths for the log files. If left empty,
+    # Filebeat will choose the paths depending on your OS.
+    #var.paths:
+
+  # hippo-audit logs
+  hippo-audit:
+    enabled: true
 
     # Set custom paths for the log files. If left empty,
     # Filebeat will choose the paths depending on your OS.
