@@ -5,7 +5,7 @@
     "grok": {
       "field": "message",
       "patterns":[
-                "%{TIMESTAMP:tomcat.hippo-site.timestamp}\\s+\\[%{GREEDYDATA:tomcat.hippo-site.thread}\\]\\s+%{LOGLEVEL:tomcat.hippo-site.loglevel}\\s+\\[%{GREEDYDATA:tomcat.hippo-site.location}\\]\\s+%{GREEDYMULTILINE:tomcat.hippo-site.message}"
+                "%{TIMESTAMP:tomcat.hippo-site.timestamp}\\s+\\[%{GREEDYDATA:tomcat.hippo-site.thread}\\]\\s+%{LOGLEVEL:tomcat.hippo-site.loglevel}\\s+\\[%{GREEDYDATA:tomcat.hippo-site.path.classmethod}:%{GREEDYDATA:tomcat.hippo-site.path.line}\\]\\s+%{GREEDYMULTILINE:tomcat.hippo-site.message}"
         ],
       "ignore_missing": true,
       "pattern_definitions": {
