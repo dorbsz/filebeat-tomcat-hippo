@@ -14,3 +14,7 @@ Don't forget to change your timezone @ /module/tomcat/hippo-XXX/ingest/pipeline.
     "ignore_failure": true
     }
 }
+
+List of valid timezones can be found here: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+
+Also make sure to change your /module/tomcat/hippo-XXX/manifest.yml to reflect your environment
